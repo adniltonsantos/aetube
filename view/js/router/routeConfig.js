@@ -1,5 +1,5 @@
-app.config(function ($stateProvider){
-       
+app.config(function ($stateProvider, $urlRouterProvider){
+  $urlRouterProvider.otherwise("/");
  var homeState = {
     name: 'home',
     url: '/',
@@ -7,13 +7,13 @@ app.config(function ($stateProvider){
     controller: 'homeCtrl'
   }
 
-  var aboutState = {
-    name: 'about',
-    url: '/about',
+  var sobreState = {
+    name: 'sobre',
+    url: '/sobre',
     template: '<h3>Its the UI-Router hello world app!</h3>'
   }
 
   $stateProvider.state(homeState);
-  $stateProvider.state(aboutState);
+  $stateProvider.state(sobreState);
 
 });
