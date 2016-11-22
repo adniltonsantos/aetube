@@ -6,6 +6,8 @@ trait Builder
 	private static $select	= "SELECT * FROM";
 	private static $insert	= "INSERT INTO ";
 	private static $where	= " WHERE ";
+    private static $update  = "UPDATE ";
+    private static $set     = " SET ";
     public static  $condition;
     public static  $table;
     public static  $sql;
@@ -29,24 +31,33 @@ trait Builder
         	$i++;
         }
         $retorno = ["key" => $chave, "value" => $valor ];
-    	
+
         self::$sql = self::$insert.self::$table." ".$retorno['key']." values ".$retorno['value'];
     }
     /**
-    *   Gera SQL para selec com ou sem Where
+    *   Gera SQL para select com ou sem Where
     */
     public function makeSelect($class){
         $class = $class->toArray();
-        
+        $temp;
         foreach (self::$condition as $key => $value) {
             if ($value == "AND"|| $value == "OR"){
-                $a .= " ".$value." ";
+                $temp .= " ".$value." ";
             }else{
             
-                $a .= $value."=". "'".$class[$value]."'";
+                $temp .= $value."=". "'".$class[$value]."'";
             }
         }
-        self::$sql = self::$select." ".self::$table.self::$where.$a;
+        self::$sql = self::$select." ".self::$table.self::$where.$temp;
+      
+    }
+
+    public function makeUpdate($class){
+        $class = $class->toArray();
+        foreach ($class as $key => $value) {
+            $temp .= " $key=$value";
+        }
+        self::$sql = self::$update.self::$table.self::$set.$temp.self::$where." id=".$class["id"];
     }
 
 }

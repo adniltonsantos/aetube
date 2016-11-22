@@ -32,6 +32,16 @@ class Model{
 		$r = $linha->fetch(PDO::FETCH_ASSOC);
 		return $r;
 	}
+	public function update(){
+		$this->loadTable();
+		Builder::$condition = 
+		Builder::makeUpdate($this->class);
+		$con = new ConnectionFactory($this->mode);
+		$db = $con->getInstance();
+		$linha = $db->execute(Builder::$sql);
+		$r = $linha->fetch(PDO::FETCH_ASSOC);
+		return $r;
+	}
 	public function loadTable(){
 		Builder::$table = str_replace("\\", "/", strtolower(get_called_class()));
 		Builder::$table = split('/', Builder::$table);
