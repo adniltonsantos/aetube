@@ -3,17 +3,17 @@ app.config(function ($stateProvider, $urlRouterProvider){
  var homeState = {
     name: 'home',
     url: '/',
-    templateUrl: 'view/url/home.htm',
+    templateUrl: 'view/site/home.htm',
     controller: 'homeCtrl'
   }
 
-  var sobreState = {
-    name: 'sobre',
-    url: '/sobre',
-    template: '<h3>Its the UI-Router hello world app!</h3>'
+  var associadoState = {
+    name: 'associado',
+    url: '/associado',
+    templateUrl: 'view/associado/home.htm'
   }
 
   $stateProvider.state(homeState);
-  $stateProvider.state(sobreState);
+  $stateProvider.state(associadoState);
 
 });
