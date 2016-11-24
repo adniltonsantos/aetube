@@ -9,9 +9,9 @@
 	<div class="menu">
 		
 		<div class="dropdown">
-		  <button class="dropbtn">Home</button>
+		  <button class="dropbtn"><a ng-href="#/home/inicio">Home</a></button>
 		  <div class="dropdown-content">
-		    <a href="#">Link 1</a>
+		    <a ng-href="#/home/teste">Teste</a>
 		    <a href="#">Link 2</a>
 		    <a href="#">Link 3</a>
 		  </div>
@@ -58,7 +58,7 @@
 	<div class="login">
 	<h4>Área do Associado <i class="fa fa-2x fa-graduation-cap" aria-hidden="true"></i></h4>
 
-		<form class="form-inline" name="formAut" ng-submit="logando(user)" action="#/associado">
+		<form class="form-inline" name="formAut" ng-submit="logando(user)">
 			
 
 					<input type="text" ng-model="user.cpf" class="form-control" placeholder="Digite seu CPF">

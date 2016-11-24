@@ -1,19 +1,36 @@
 app.config(function ($stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise("/");
- var homeState = {
-    name: 'home',
-    url: '/',
-    templateUrl: 'view/site/home.htm',
-    controller: 'homeCtrl'
-  }
+  
+  $stateProvider
+    .state('home', {
+      url: '/home',
+      templateUrl: 'view/site/home.htm',
+         controller:'homeCtrl'
+    })
 
-  var associadoState = {
-    name: 'associado',
-    url: '/associado',
-    templateUrl: 'view/associado/home.htm'
-  }
+    .state('home.inicio', {
+      url:'/inicio',
+      templateUrl: 'view/site/inicio.htm'
 
-  $stateProvider.state(homeState);
-  $stateProvider.state(associadoState);
+    })
+
+    .state('home.teste', {
+      url:'/teste',
+      templateUrl: 'view/site/teste.htm'
+    })
+
+    .state('home.leiaMais', {
+      url:'/leiaMais',
+      templateUrl: 'view/site/leiaMais.htm'
+    })
+
+      .state('associado', {
+      url:'/associado',
+      templateUrl: 'view/associado/home.htm'
+    })
+
+
+  $urlRouterProvider.otherwise("/home/inicio");
+
+
 
 });
