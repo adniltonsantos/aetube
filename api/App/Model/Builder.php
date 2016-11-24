@@ -8,6 +8,7 @@ trait Builder
 	private static $where	= " WHERE ";
     private static $update  = "UPDATE ";
     private static $set     = " SET ";
+    
     public static  $condition;
     public static  $table;
     public static  $sql;
@@ -34,30 +35,52 @@ trait Builder
 
         self::$sql = self::$insert.self::$table." ".$retorno['key']." values ".$retorno['value'];
     }
+
     /**
     *   Gera SQL para select com ou sem Where
     */
     public function makeSelect($class){
         $class = $class->toArray();
-        $temp;
-        foreach (self::$condition as $key => $value) {
-            if ($value == "AND"|| $value == "OR"){
-                $temp .= " ".$value." ";
-            }else{
-            
-                $temp .= $value."=". "'".$class[$value]."'";
+        $temp = null;
+        if (is_null(self::$condition)){
+            self::$sql = self::$select." ".self::$table;
+        }else{
+            foreach (self::$condition as $key => $value) {
+                if ($value == "AND"|| $value == "OR"){
+                    $temp .= " ".$value." ";
+                }else{
+                
+                    $temp .= $value."=". "'".$class[$value]."'";
+                }
             }
+            self::$sql = self::$select." ".self::$table.self::$where.$temp;
         }
-        self::$sql = self::$select." ".self::$table.self::$where.$temp;
-      
     }
 
     public function makeUpdate($class){
         $class = $class->toArray();
+        $temp = null;
+        $id = $class['id'];
+        unset($class['id']);
         foreach ($class as $key => $value) {
-            $temp .= " $key=$value";
+            if (empty($value)){
+
+            }else{
+                if($key == "id"){
+
+                }else{
+
+                }
+                $temp .= " $key=$value";
+            }
         }
-        self::$sql = self::$update.self::$table.self::$set.$temp.self::$where." id=".$class["id"];
+        self::$sql = self::$update.self::$table.self::$set.$temp.self::$where." id=".$id;
+        echo self::$sql;
     }
+    
+    
 
 }
+/*
+*
+*/
