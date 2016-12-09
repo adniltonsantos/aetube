@@ -1,15 +1,15 @@
 app.config(function ($stateProvider, $urlRouterProvider){
   
   $stateProvider
-    .state('home', {
-      url: '/home',
-      templateUrl: 'view/site/home.htm',
+    .state('login', {
+      url: '/login',
+      templateUrl: 'view/login/home.htm',
          controller:'homeCtrl'
     })
 
     .state('home.inicio', {
       url:'/inicio',
-      templateUrl: 'view/site/inicio.htm'
+      templateUrl: 'view/login/inicio.htm'
 
     })
 
@@ -28,8 +28,12 @@ app.config(function ($stateProvider, $urlRouterProvider){
       templateUrl: 'view/associado/home.htm'
     })
 
+      .state('associado.fatura', {
+      url:'/fatura',
+      templateUrl: 'view/associado/fatura.htm'
+    })
 
-  $urlRouterProvider.otherwise("/home/inicio");
+  $urlRouterProvider.otherwise("/login");
 
 
 
